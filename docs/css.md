@@ -1,6 +1,6 @@
-# 链接方式
+## 链接方式
 
-## 外部链接
+### 外部链接
 
 ```html
 <link rel="stylesheet" href="mystyle.css">
@@ -8,7 +8,7 @@
 
 可以链接多个外部的样式
 
-## 内部链接
+#### 内部链接
 
 ```html
 <!DOCTYPE html>
@@ -34,7 +34,7 @@ h1 {
 </html>
 ```
 
-## 行内样式
+#### 行内样式
 
 ```html
 <h1 style="color:blue;text-align:center;">This is a heading</h1>
@@ -43,9 +43,9 @@ h1 {
 
 
 
-# 选择器
+## 选择器
 
-## 基本选择器
+### 基本选择器
 
 ```css
 .a{
@@ -62,7 +62,7 @@ p{
 }
 ```
 
-## 分组选择器
+### 分组选择器
 
 ```css
 h1,h2,p{
