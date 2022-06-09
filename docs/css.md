@@ -79,6 +79,46 @@ h1,h2,p{
 
 意思就是一次选择多个选择器，中间用逗号隔开。
 
+### 后代选择器
+
+父元素下面的==所有指定的标签==
+
+```css
+<main>
+    <div id="one">
+        <div>
+            <p>11</p>
+        </div>
+        <p>1</p>
+        <p>2</p>
+        <p>3</p>
+        <p>4</p>
+    </div>
+</main>
+<style>
+    #one p{
+        color: red;
+    }
+</style>
+```
+
+<main>
+    <div id="one">
+        <div>
+            <p>11</p>
+        </div>
+        <p>1</p>
+        <p>2</p>
+        <p>3</p>
+        <p>4</p>
+    </div>
+</main>
+<style>
+    #one p{
+        color: red;
+    }
+</style>
+
 ## color
 
 ### RGB
@@ -408,3 +448,398 @@ p.capitalize {
 ```
 
 第3个的意思是首字母大写，前面2个不用我说了。
+
+### 首行缩进text-indent
+
+```css
+p {
+  text-indent: 50px;
+}
+```
+
+### 字符间距letter-spacing
+
+```css
+h1 {
+  letter-spacing: 5px;
+}
+
+h2 {
+  letter-spacing: -2px;
+}
+```
+
+### 行高line-height
+
+```css
+p.small {
+  line-height: 0.8;
+}
+
+p.big {
+  line-height: 1.8;
+}
+```
+
+因为文字没有垂直居中，所以可以利用line-height来左文章
+
+```css
+p{
+	height:50px;
+	line-height:50px;
+}
+```
+
+让line-height=height那么就垂直居中了
+
+### 单词间距word-spacing
+
+```css
+p.one {
+  word-spacing: 10px;
+}
+
+p.two {
+  word-spacing: -2px;
+}
+```
+
+### 文字阴影text-shadow
+
+```css
+h1 {
+  text-shadow: 0 0 3px #ff0000;
+}
+```
+
+参数1-3：x阴影距离，y距离，阴影模糊距离 x,y可以负，就是反方向阴影
+
+参数4：阴影距离
+
+可以同时设置多个阴影，用逗号隔开
+
+```css
+h1 {
+  text-shadow: 0 0 3px #ff0000, 0 0 5px #0000ff;
+}
+```
+
+## 字体font
+
+### font-family
+
+我感觉自带的字体都是针对英文的，所以用默认的就好
+
+### font-style
+
+```css
+p.normal {
+  font-style: normal;
+}
+
+p.italic {
+  font-style: italic;
+}
+
+p.oblique {
+  font-style: oblique;
+}
+```
+
+### font-weight
+
+```css
+p.normal {
+  font-weight: normal;
+}
+
+p.thick {
+  font-weight: bold;
+}
+```
+
+### font-size
+
+文字大小
+
+```css
+h1 {
+  font-size: 40px;
+}
+
+h2 {
+  font-size: 30px;
+}
+
+p {
+  font-size: 14px;
+}
+```
+
+```css
+h1 {
+  font-size: 2.5em; /* 40px/16=2.5em */
+}
+
+h2 {
+  font-size: 1.875em; /* 30px/16=1.875em */
+}
+
+p {
+  font-size: 0.875em; /* 14px/16=0.875em */
+}
+```
+
+响应式font-size
+
+```html
+<h1 style="font-size:10vw">Hello World</h1>
+```
+
+视口是浏览器窗口的大小。 1vw = 视口宽度的 1%。如果视口为 50 厘米宽，则 1vw 为 0.5 厘米。
+
+### 缩写
+
+The `font` property is a shorthand property for:
+
+- `font-style`
+- `font-variant`
+- `font-weight`
+- `font-size/line-height`
+- `font-family`
+
+The `font-size` and `font-family` values are required
+
+```css
+p.a {
+  font: 20px Arial, sans-serif;
+}
+
+p.b {
+  font: italic small-caps bold 12px/30px Georgia, serif;
+}
+```
+
+## 链接link
+
+链接主要讲的是在它的4个状态下，给它定制样式
+
+- `a:link` - a normal, unvisited link  正常状态，还没有访问的状态
+- `a:visited` - a link the user has visited 已经访问过的
+- `a:hover` - a link when the user mouses over it 鼠标经过的时候
+- `a:active` - a link the moment it is clicked 链接被点击的那一刻
+
+>在为多个链接状态设置样式时，有一些顺序规则： a:hover 必须在 a:link 和 a:visited 之后 a:active 必须在 a:hover 之后
+
+### 去下划线
+
+默认是有下划线的，可以用样式去掉
+
+```css
+a:link {
+  text-decoration: none;
+}
+
+a:visited {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+a:active {
+  text-decoration: underline;
+}
+```
+
+## List列表
+
+列表有ul  and ol  
+
+ul是无序列表
+
+ol是有序列表，每一项前面都有序号
+
+### list-style-type
+
+可以更改前标样式
+
+其实用ul>li就可以了，他们的样式通用
+
+### list-style-image
+
+对的，可以把前标换成图片
+
+不过不太好用，因为你要准备足够小的图片，而且加载浪费时间，这个就算了吧，哈哈
+
+### list-style-position
+
+前标是占位置的，如果换行，第2行和一行对齐还是和前标对齐的样式
+
+inside就是和前标对齐，outside就是和文字对齐
+
+这个不需要刻意去记了
+
+```css
+ul.a {
+  list-style-position: outside;
+}
+
+ul.b {
+  list-style-position: inside;
+}
+```
+
+### 移除默认样式
+
+很多时候我们是不需要前标的，及时移除了，文字前面也有缩进，都可以取消的
+
+```css
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+```
+
+### 缩写
+
+```css
+ul {
+  list-style: square inside url("sqpurple.gif");
+}
+```
+
+## table表格
+
+用到的很多
+
+基本标签
+
+```html
+<table>
+        <tr>
+            <th></th>
+        </tr>
+        <tr>
+            <td></td>
+        </tr>
+        
+</table>
+```
+
+tr就是一行的意思，然后一行里有几个就写几个，th,td,th是第一行行头，所以单独区分
+
+### Table Borders表格边框
+
+OK，默认下表格是没有边框的
+
+```css
+table, th, td {
+  border: 1px solid;
+}
+```
+
+注意，我们这里写的3个元素加边框，因为每个元素只会给自己外围加边框，其实3个都加了是非常丑的，不会像excel那样平滑
+
+### table width
+
+这没啥讲的，里面的单元格会自动拉伸
+
+```css
+table {
+  width: 100%;
+}
+```
+
+### Collapse Table Borders表格边框去重
+
+```css
+table {
+  border-collapse: collapse;
+}
+```
+
+好了，现在就和excel一样看上去很平滑了
+
+### table style
+
+默认的表格很丑，我们可以自己修改样式，比如th,td不加边框，只加bottom
+
+比如奇偶颜色不同
+
+```css
+tr:nth-child(even) {background-color: #f2f2f2;}
+```
+
+比如鼠标经过某一行，变色
+
+```css
+tr:hover {background-color: coral;}
+```
+
+### 响应式表格
+
+如果屏幕太小而无法显示完整内容，响应式表格将显示水平滚动条：
+
+```css
+<div style="overflow-x:auto;">
+
+<table>
+... table content ...
+</table>
+
+</div>
+```
+
+## positon
+
+元素的位置有很多调整的方法
+
+默认的都是从上到下一个元素一行的排列，就像是写word一样
+
+### static
+
+是元素的默认属性
+
+```css
+div.static {
+  position: static;
+  border: 3px solid #73AD21;
+}
+```
+
+### relative
+
+相对定位，这是相对自己原来的位置的定位，==且原来的位置是保留的==
+
+```css
+div:nth-child(1){
+        position: relative;
+        left: 50px;
+        background-color: red;
+    }
+```
+
+### fixed
+
+相对于视口，然后于自己的位置永远固定
+
+原来的位置不再保留
+
+```css
+#one_1{
+        background-color: green;
+        position: fixed;
+        bottom: 50px;
+    }
+```
+
+### absolute
+
+绝对定位，首先是相对于父元素，第2父元素要是相对定位relative才行，==口诀：子绝父相==
+
+### sticky
+
+在超过屏幕显示的内容的时候，从static=》fixed，一般比如头部导航可以设置。
