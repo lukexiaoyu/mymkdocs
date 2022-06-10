@@ -119,6 +119,10 @@ h1,h2,p{
     }
 </style>
 
+<hr>
+
+
+
 ## color
 
 ### RGB
@@ -159,6 +163,51 @@ RGB和HSL都可以添加透明度
 ```
 
 其中参数a它的取值是0-1，1是正常，0就完全透明
+
+### 透明transparent
+
+这个属性就是直接透明了。
+
+```css
+div {
+  background-color: transparent;
+}
+```
+
+### currentcolor 
+
+意思就是和当前元素的一些颜色相同
+
+```css
+div {
+  color: blue;
+  border: 10px solid currentcolor;
+}
+```
+
+比如这里字体颜色是blue,所以border也就是blue了。
+
+适合页面的整体调色。
+
+### inherit 
+
+继承父元素的颜色
+
+```css
+div {
+  border: 2px solid red;
+}
+
+span {
+  border: inherit;
+}
+```
+
+div是red,span也就是red
+
+### Gradients渐变
+
+
 
 ## 背景background
 
@@ -243,6 +292,47 @@ body {
 ```
 
 背景颜色在背景图片的下面，不用担心
+
+### background-size
+
+可以用长度单位，百分比，或者用关键字：contain cover
+
+```css
+#div1 {
+  background: url(img_flower.jpg);
+  background-size: 100px 80px;
+  background-repeat: no-repeat;
+}
+```
+
+很简单就是宽和高
+
+如果使用百分比，这个百分比的意思是占父元素的width，height百分之多少。比如都是100%，那么就刚好拉升填充父元素
+
+最后一个就是contain cover
+
+contain ：让图片等比例拉伸，图片能够全部显示，且有一边和父元素完全重合之后停止缩放。
+
+cover：让图片等比例拉伸，切充满整个父元素，且有一边和父元素完全重合之后停止缩放。
+
+最常用的一般是width或者height 100%,然后另一边auto.
+
+### background-origin
+
+这是一个==背景image==范围的属性
+
+1. border-box  会把边框的范围也算进去，是最大的
+2. padding-box  默认值
+3. content-box 只会在内容的范围，是最小的
+
+```css
+background-origin: content-box;
+
+```
+
+### background-clip
+
+这个和上面的一样，只不过，这个属性==针对的是整个背景==，而不只是image
 
 ## border边框
 
@@ -843,3 +933,90 @@ div:nth-child(1){
 ### sticky
 
 在超过屏幕显示的内容的时候，从static=》fixed，一般比如头部导航可以设置。
+
+## math function 数学运算
+
+### calc
+
+```css
+#div1 {
+  position: absolute;
+  left: 50px;
+  width: calc(100% - 100px);
+  border: 1px solid black;
+  background-color: yellow;
+  padding: 5px;
+}
+```
+
+要注意的是中间的符号==前后都要有空格==
+
+### max,min
+
+选择最大,最小的值进行style
+
+```css
+#div1 {
+  background-color: yellow;
+  height: 100px;
+  width: max(50%, 300px);
+}
+```
+
+## 2D转换
+
+- `translate()` 
+- `rotate()`
+- `scaleX()`
+- `scaleY()`
+- `scale()`
+- `skewX()`
+- `skewY()`
+- `skew()`
+- `matrix()`
+
+### translate位移
+
+x,y移动,仍然保留原来的位置。挺方便的
+
+```css
+div {
+  transform: translate(50px, 100px);
+}
+```
+
+百分比=>是相对于自身的长度了。
+
+```css
+div {
+  transform: translate(50%, 50%);
+}
+```
+
+### rotate旋转
+
+中心点就是元素的中心，单位deg就是度的意思咯。顺序是顺时针，可以负度数
+
+```css
+div {
+  transform: rotate(-20deg);
+}
+```
+
+### scale缩放
+
+这个是针对x,y缩放的
+
+基数是1，然后你自己写吧。
+
+需要注意的是缩放的时候是以中心缩放的，不是以左上角
+
+```css
+div {
+  transform: scale(2, 3);
+}
+div {
+  transform: scale(0.5, 0.2);
+}
+```
+
