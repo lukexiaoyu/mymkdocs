@@ -39,6 +39,19 @@ let b=8.6
 
 是number类型，但它不是一个合法的数字
 
+那么什么样number的才是NaN呢?
+
+在数字与字符串进行 - * /运算的时候就会出现这样的情况。
+
+isNaN
+
+```js
+let a=5+'k'
+console.log(isNaN(a))  //返回b
+```
+
+
+
 ### 运算
 
 ```js
